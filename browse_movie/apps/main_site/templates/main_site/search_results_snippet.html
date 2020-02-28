@@ -1,0 +1,10 @@
+{% for result in results %}
+<div class="row mt-4">
+    <div class="col-3">
+        <img class="mw-100" src="{{ result.Poster }}" alt="{{ result.Title }}">
+    </div>
+    <div class="col-9 d-flex align-items-center">
+        <h3>{{ result.Title }}</h3>
+    </div>
+</div>
+{% endfor %}
