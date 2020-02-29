@@ -150,15 +150,15 @@ AUTHENTICATION_BACKENDS = [
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
-            'client_id': '123',
-            'secret': '456',
+            'client_id': '101775380685-bio2mvpmqu3uh46vkbp03cne2ihqj1p1',
+            'secret': 'zhSB1jO_lCbScpY56yP7GCmb',
             'key': ''
         }
     },
     'facebook': {
         'APP': {
-            'client_id': '123',
-            'secret': '456',
+            'client_id': '1056497998047945',
+            'secret': 'd84141e0412f1d77d54d406a5ebc558e',
             'key': ''
         }
     }

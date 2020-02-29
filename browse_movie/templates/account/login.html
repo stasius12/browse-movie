@@ -1,35 +1,11 @@
 {% extends "account/base.html" %}
 
-{% load i18n %}
+{% load i18n static %}
 {% load account socialaccount %}
 
 {% block title %}SignIn{% endblock title %}
 
 {% block auth_content %}
-
-{% get_providers as socialaccount_providers %}
-
-{% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
-
-<div class="socialaccount_ballot">
-
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
-
-  <div class="login-or">{% trans 'or' %}</div>
-
-</div>
-
-{% include "socialaccount/snippets/login_extra.html" %}
-
-{% else %}
-<p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-{% endif %}
 
 <h1 class="text-center">Sign In</h1>
 
@@ -55,6 +31,18 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
     {% endif %}
 
     <button class="primaryAction btn btn-success btn-block" type="submit">Sign In</button>
+    <div class="row mt-4">
+        <div class='col-md-8 offset-md-2'>
+            <a class="btn btn-primary btn-block d-flex align-items-center justify-content-center" href="{% provider_login_url "facebook" %}">
+                <img src="{% static 'facebook.png' %}">
+                <span>Sign In with Facebook</span>
+            </a>
+            <a class="btn btn-danger btn-block d-flex align-items-center justify-content-center" href="{% provider_login_url "google" %}">
+                <img src="{% static 'google.png' %}">
+                <span>Sign In with Google</span>
+            </a>
+        </div>
+    </div>
 </form>
 <div class="form-container mt-4 p-3 text-center smaller-text">
     New to BrowseMovie? <a href="{{ signup_url }}">Create an account</a>.
