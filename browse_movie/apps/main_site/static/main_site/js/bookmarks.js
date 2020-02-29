@@ -28,7 +28,7 @@ $(document).ready(function() {
                     });
                     element.fadeTo('fast', 0).promise().then(() => {
                         $(element).toggleClass('bookmark-remove').toggleClass('bookmark-add');
-                        $(element).find('img').attr('src', `/static/main_site/bookmark_${reverse_action}e.png`);
+                        $(element).find('img').attr('src', `/static/main_site/bookmark_${reverse_action}.png`);
                         element.fadeTo('fast', 1);
                     });
                 }

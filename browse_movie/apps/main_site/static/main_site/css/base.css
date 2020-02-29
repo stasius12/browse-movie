@@ -1,0 +1,62 @@
+#home-page {
+    color: white;
+}
+#home-page .header-title {
+    margin-top: 20vh;
+}
+#home-page h1 {
+    font-size: 100px;
+}
+.text-yellow {
+    color: #effd2f;
+}
+.search-input {
+    padding: 1.7rem 2rem;
+    border-radius: 26px;
+}
+.search-result-title {
+    transition: color .2s;
+}
+.search-result-title:hover {
+    color: #ceda32;
+    text-decoration: none;
+    transition: color .2s;
+}
+.search-result .year {
+    font-size: .7em;
+}
+.search-result .imdb-rating-outer {
+    height: 2em;
+}
+.search-result .imdb-rating-outer img {
+    height: 1.3em;
+}
+.search-result .imdb-rating-outof {
+    font-size: .7em;
+}
+.bookmark-add img {
+    height: 2rem;
+}
+.bookmark-remove img {
+    height: 1.7rem;
+}
+#watchlist-circle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0px 0px 10px -1px rgba(0,0,0,0.75);
+}
+#watchlist-count {
+    position: absolute;
+    right: -10%;
+    top: 0;
+}
+.watchlist-singlemovie {
+    margin: 10px;
+    box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
+    padding: 10px;
+}
