@@ -11,6 +11,11 @@
         <h3>
             <a href="https://www.imdb.com/title/{{ result.imdbID }}/" target="_blank">{{ result.Title }}</a>
             <span class="year"></span>
+            {% if not result.imdbID in user.watchlist_set.first.movies_id %}
+            <span class="bookmark-add btn p-0"><img class="" src="{% static 'main_site/bookmark_adde.png' %}" alt="bookmark-{{ result.Title }}"></span>
+            {% else %}
+            <span class="bookmark-remove btn p-0"><img class="" src="{% static 'main_site/bookmark_removee.png' %}" alt="bookmark-{{ result.Title }}"></span>
+            {% endif %}
         </h3>
         <p class="imdb-rating-outer d-flex align-items-center">
             <img src="{% static 'main_site/star.png' %}">

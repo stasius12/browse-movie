@@ -1,4 +1,4 @@
-{% extends "main_site/base.html" %}{% load static %}
+{% extends "base.html" %}{% load static %}
 
 {% block extrahead %}
 <style>
@@ -14,10 +14,34 @@
 .search-result .imdb-rating-outof {
     font-size: .7em;
 }
+.bookmark-add img, .bookmark-remove img {
+    height: 2rem;
+}
+#watchlist-circle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0px 0px 10px -1px rgba(0,0,0,0.75);
+}
+#watchlist-count {
+    position: absolute;
+    right: -10%;
+    top: 0;
+}
+.watchlist-singlemovie {
+    margin: 10px;
+    box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
+    padding: 10px;
+}
 </style>
 {% endblock extrahead %}
 
 {% block content %}
+{% csrf_token %}
 <div class="container my-5">
     <div class="row">
         <div class="col-md-8 offset-md-2">
@@ -34,8 +58,33 @@
         </div>
     </div>
 </div>
+<div class="btn" id="watchlist-circle" data-toggle="modal" data-target="#watchlist-modal">
+    <img class="mw-100" src="{% static 'main_site/bookmark.png' %}" alt="bookmark">
+    <h5 id="watchlist-count"><span class="badge badge-pill badge-primary">{{ user.watchlist_set.first.movies_id|length }}</span></h5>
+</div>
+
+<!-- modals -->
+<div class="modal fade" id="watchlist-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Your watchlist</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            {% for movie_id in user.watchlist_set.first.movies_id %}
+                {% include 'main_site/watchlist_singlemovie_snippet.html' %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end modals -->
 {% endblock content %}
 
 {% block extrafoot %}
 <script src="{% static 'main_site/js/search.js' %}"></script>
+<script src="{% static 'main_site/js/bookmarks.js' %}"></script>
 {% endblock extrafoot %}
