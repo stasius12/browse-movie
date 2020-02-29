@@ -13,13 +13,14 @@ def home_page(request):
 def ajax_search(request):
     if request.is_ajax():
         q = request.GET.get('q', None)
+        p = request.GET.get('p', 1)
         if q is not None:
-            call = APICall(search=q)
-            # results = {'results': ['ala', 'ma', 'kota']}
-            results = {
-                'results': call.get_data()
-            }
+            call = APICall(search=q, page=p)
+            results = {'results': call.get_results()}
             search_results = render_to_string('main_site/search_results_snippet.html', results)
             return JsonResponse({
-                'html_content': search_results
+                'status': call.response,
+                'search': q,
+                'html_content': search_results,
+                'next_page': call.get_next_page()
             })

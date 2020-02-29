@@ -1,10 +1,26 @@
-{% for result in results %}
-<div class="row mt-4">
+{% for result in results %}{% load static %}
+<div id="{{ result.imdbID }}" class="search-result row mt-4">
     <div class="col-3">
+        {% if result.Poster and not 'N/A' in result.Poster %}
         <img class="mw-100" src="{{ result.Poster }}" alt="{{ result.Title }}">
+        {% else %}
+        <img class="mw-100" src="{% static 'main_site/no-cover.jpg' %}" alt="{{ result.Title }}">
+        {% endif %}
     </div>
-    <div class="col-9 d-flex align-items-center">
-        <h3>{{ result.Title }}</h3>
+    <div class="col-9 d-flex flex-column align-items-start justify-content-center">
+        <h3>
+            <a href="https://www.imdb.com/title/{{ result.imdbID }}/" target="_blank">{{ result.Title }}</a>
+            <span class="year"></span>
+        </h3>
+        <p class="imdb-rating-outer d-flex align-items-center">
+            <img src="{% static 'main_site/star.png' %}">
+            <span class="ml-1">
+                <span class="imdb-rating-inner"></span>
+                <span class="imdb-rating-outof">/ 10</span>
+            </span>
+        </p>
     </div>
 </div>
+{% empty %}
+    <h3>We are sorry, we didn't find your perfect movie for tonight.</h3>
 {% endfor %}
