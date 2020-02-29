@@ -1,0 +1,46 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block title %}SignUp{% endblock title %}
+
+{% block auth_content %}
+
+{% get_providers as socialaccount_providers %}
+
+<h1 class="text-center">Sign Up</h1>
+
+{% if form.non_field_errors %}
+<div class="alert alert-danger">{{ form.non_field_errors|striptags }}</div>
+{% endif %}
+{{ form.errors }}
+<form class="signup form form-container p-4" id="signup_form" method="POST" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="username" class="font-weight-bold">Username</label>
+        <input class="form-control" id="id_lusername" type="text" name="username" required>
+    </div>
+    <div class="form-group">
+        <label for="id_email" class="font-weight-bold">Email</label>
+        <input class="form-control" id="id_email" type="email" name="email" required>
+    </div>
+    <div class="form-group">
+        <label for="id_password1" class="font-weight-bold">Password</label>
+        <input class="form-control" id="id_password1" type="password" name="password1" required>
+    </div>
+    <div class="form-group">
+        <label for="id_password2" class="font-weight-bold">Password (again)</label>
+        <input class="form-control" id="id_password2" type="password" name="password2" required>
+    </div>
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+
+    <button class="primaryAction btn btn-success btn-block" type="submit">Sign Up</button>
+</form>
+<div class="form-container mt-4 p-3 text-center smaller-text">
+    Already have an account? Then please <a href="{{ login_url }}">Sign In</a>.
+</div>
+
+{% endblock %}

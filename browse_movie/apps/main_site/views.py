@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 from .api_call import APICall
 
 
-
+@login_required
 def home_page(request):
     return render(request, 'main_site/home_page.html', {})
 

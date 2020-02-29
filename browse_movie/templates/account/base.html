@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block extrahead %}
+<style>
+.form-container {
+    border-radius: .25rem;;
+    box-shadow: 0 0 0 2px #00000014;
+}
+.smaller-text {
+    font-size: .9rem !important;
+}
+</style>
+{% endblock extrahead %}
+
+{% block content %}
+<div class="min-vh-100 mt-5">
+    <div class="row">
+        <div class="col-sm-6 offset-sm-3 col-lg-4 offset-lg-4">
+        {% block auth_content %}{% endblock auth_content %}
+    </div>
+</div>
+</div>
+{% endblock content %}

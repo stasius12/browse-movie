@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SITE_ID = 1
+
 
 # Application definition
 
@@ -36,7 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+
     'browse_movie.apps.main_site',
 ]
 
@@ -55,7 +65,9 @@ ROOT_URLCONF = 'browse_movie.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'browse_movie/templates/')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,6 +82,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'browse_movie.wsgi.application'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -127,3 +140,28 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "browse_movie/static/"),
 ]
+
+# django-allauth
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '123',
+            'secret': '456',
+            'key': ''
+        }
+    },
+    'facebook': {
+        'APP': {
+            'client_id': '123',
+            'secret': '456',
+            'key': ''
+        }
+    }
+}
+
+LOGIN_REDIRECT_URL = '/'
