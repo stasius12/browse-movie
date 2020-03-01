@@ -4,7 +4,8 @@ const endpoint = '/ajax-search/';
 const delay_by_in_ms = 700;
 let scheduled_function = false;
 
-var json = {
+/*
+var example_data = {
     "Title": "Star Wars: Episode IV - A New Hope",
     "Year": "1977",
     "Rated": "PG",
@@ -43,22 +44,21 @@ var json = {
     "Production": "20th Century Fox",
     "Website": "N/A",
     "Response": "True"
-}
+} */
 
 function download_more_data() {
     $('.search-result').each(function(index, element) {
-        // $.getJSON(`http://www.omdbapi.com/?apikey=e4fbd650&i=${$(element).attr('id')}`)
-        //     .done(function(response) {
-        //         if (response.Response == 'True') {
-        //             $(element).find('.imdbRating').text(response.imdbRating);
-        //             $(element).find('.Year').text(response.Year);
-        //         }
-        //     });
-        $(element).find('.imdb-rating-inner').text(json.imdbRating);
-        $(element).find('.year').text(`(${json.Year})`);
-
+        $.getJSON(`http://www.omdbapi.com/?apikey=e4fbd650&i=${$(element).attr('id')}`)
+            .done(function(response) {
+                if (response.Response == 'True') {
+                    $(element).find('.imdb-rating-inner').text(response.imdbRating);
+                    $(element).find('.runtime').text(response.Runtime);
+                    $(element).find('.genre').text(response.Genre);
+                    $(element).find('.released').text(response.Released);
+                    $(element).find('.country').text(`(${response.Country})`);
+                }
+            });
     });
-
 }
 
 let ajax_call = function(endpoint, req_params, replaceable, append) {
@@ -68,7 +68,6 @@ let ajax_call = function(endpoint, req_params, replaceable, append) {
                 replaceable.fadeTo('fast', 0).promise().then(() => {
                     let html_content = response['html_content'];
                     let next_page = response['next_page'];
-                    console.log(response['search']);
                     if (append && response['status']) {
                         $(`${html_content}`).appendTo(replaceable);
                         replaceable.fadeTo('fast', 1);
@@ -77,9 +76,6 @@ let ajax_call = function(endpoint, req_params, replaceable, append) {
                         replaceable.html(html_content);
                         replaceable.fadeTo('fast', 1);
                         download_more_data();
-                        // $('.search-result').each(function(index, element) {
-                        //     console.log($(element));
-                        // });
                     }
                     if (next_page) {
                         more_results_btn.parents('.row').show();

@@ -2,24 +2,15 @@
 
 {% block extrahead %}
 <meta name="google-signin-client_id" content="101775380685-bio2mvpmqu3uh46vkbp03cne2ihqj1p1.apps.googleusercontent.com">
-<style>
-.form-container {
-    border-radius: .25rem;;
-    box-shadow: 0 0 0 2px #00000014;
-}
-.smaller-text {
-    font-size: .9rem !important;
-}
-</style>
 {% endblock extrahead %}
 
 {% block content %}
-<div class="min-vh-100 mt-5">
+<div class="min-vh-100 pt-5">
     <div class="row">
         <div class="col-sm-6 offset-sm-3 col-xl-4 offset-xl-4">
         {% block auth_content %}{% endblock auth_content %}
+        </div>
     </div>
-</div>
 </div>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 {% endblock content %}

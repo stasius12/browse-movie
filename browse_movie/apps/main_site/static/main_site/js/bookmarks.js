@@ -11,7 +11,6 @@ $(document).ready(function() {
     }
     function bookmark_change(imdbID, element, action) {
         let reverse_action = (action == 'add') ? 'remove' : 'add';
-        console.log(reverse_action);
         $.post("./", {
             action: action,
             imdbID: imdbID, //$(element).parents('.search-result').attr('id'),

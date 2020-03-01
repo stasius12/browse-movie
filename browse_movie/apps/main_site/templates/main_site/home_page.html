@@ -1,12 +1,14 @@
 {% extends "base.html" %}{% load static %}
 
-{% block extrahead %}
-<link rel="stylesheet" href="{% static 'main_site/css/base.css' %}">
-{% endblock extrahead %}
+{% block title %}Home{% endblock title %}
 
 {% block content %}
 {% csrf_token %}
-<div id="home-page" class="py-5 min-vh-100">
+<div id="home-page" class="py-3 min-vh-100">
+    <p class="text-right">
+        {% if request.user %}Signed in as {{ request.user }}{% endif %}
+        <a href="{% url 'account_logout' %}" class="yellow-link">Log out</a>
+    </p>
     <div class="row header-title">
         <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 text-uppercase text-center">
             <h1>Your <span class="text-yellow">movies.</span></h1>
@@ -23,18 +25,20 @@
     <div class="more-search-results"></div>
     <div class="row mt-5 see-more-btn" style="display: none;">
         <div class="col-12 text-center">
-            <button class="btn btn-outline-primary see-more-btn">See more</button>
+            <a class="btn see-more-btn yellow-link">
+                <img src="{% static 'main_site/arrow_down.png' %}" alt="Next page">
+            </a>
         </div>
     </div>
 </div>
 <div class="btn" id="watchlist-circle" data-toggle="modal" data-target="#watchlist-modal">
     <img class="mw-100" src="{% static 'main_site/bookmark_yellow.png' %}" alt="bookmark">
-    <h5 id="watchlist-count"><span class="badge badge-pill badge-primary">{{ user.watchlist_set.first.movies_id|length }}</span></h5>
+    <h5 id="watchlist-count"><span class="badge badge-pill badge-danger">{{ user.watchlist_set.first.movies_id|length }}</span></h5>
 </div>
 
 <!-- modals -->
 <div class="modal fade" id="watchlist-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Your watchlist</h5>
