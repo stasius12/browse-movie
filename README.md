@@ -21,11 +21,18 @@ Clone this repository:
 git clone https://github.com/stasius12/browse-movie
 ```
 
-Then build and run the project with:
+Then build the project with - this command will also be for running site locally:
 
 ```
 docker-compose up
 ```
+After build you have also apply migrations to your local DB:
+
+```
+docker-compose run --rm web python manage.py migrate
+```
+
+Then after running site locally (docker-compose up) go to **localhost:8000** (do not use 127.0.0.1) to see it.
 
 ## Built With
 
