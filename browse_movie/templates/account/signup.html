@@ -14,24 +14,35 @@
 {% if form.non_field_errors %}
 <div class="alert alert-danger">{{ form.non_field_errors|striptags }}</div>
 {% endif %}
-{{ form.errors }}
 <form class="signup form form-container p-4" id="signup_form" method="POST" action="{% url 'account_signup' %}">
-    {% csrf_token %}
+    {% csrf_token %}{{ form.username.is_valid }}
     <div class="form-group">
         <label for="username" class="font-weight-bold">Username</label>
-        <input class="form-control" id="id_lusername" type="text" name="username" required>
+        <input class="form-control {% if form.errors.username %}is-invalid{% endif %}" id="id_username" type="text" name="username" required>
+        <div class="invalid-feedback">
+          {{ form.errors.username }}
+        </div>
     </div>
     <div class="form-group">
         <label for="id_email" class="font-weight-bold">Email</label>
-        <input class="form-control" id="id_email" type="email" name="email" required>
+        <input class="form-control {% if form.errors.email %}is-invalid{% endif %}" id="id_email" type="email" name="email" required>
+        <div class="invalid-feedback">
+          {{ form.errors.email }}
+        </div>
     </div>
     <div class="form-group">
         <label for="id_password1" class="font-weight-bold">Password</label>
-        <input class="form-control" id="id_password1" type="password" name="password1" required>
+        <input class="form-control {% if form.errors.password1 %}is-invalid{% endif %}" id="id_password1" type="password" name="password1" required>
+        <div class="invalid-feedback">
+          {{ form.errors.password1 }}
+        </div>
     </div>
     <div class="form-group">
         <label for="id_password2" class="font-weight-bold">Password (again)</label>
-        <input class="form-control" id="id_password2" type="password" name="password2" required>
+        <input class="form-control {% if form.errors.password2 %}is-invalid{% endif %}" id="id_password2" type="password" name="password2" required>
+        <div class="invalid-feedback">
+          {{ form.errors.password2 }}
+        </div>
     </div>
     {% if redirect_field_value %}
     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
