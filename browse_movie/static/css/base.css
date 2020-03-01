@@ -44,11 +44,8 @@ body {
 .search-result .imdb-rating-outof {
     font-size: .7em;
 }
-.bookmark-add img {
+.bookmark-add img, .bookmark-remove img {
     height: 2rem;
-}
-.bookmark-remove img {
-    height: 1.7rem;
 }
 #watchlist-circle {
     position: fixed;
