@@ -1,13 +1,13 @@
 {% for result in results %}{% load static %}
 <div id="{{ result.imdbID }}" class="search-result row mt-4 p-4">
-    <div class="col-2">
+    <div class="col-4 col-sm-3 col-lg-2">
         {% if result.Poster and not 'N/A' in result.Poster %}
         <img class="mw-100" src="{{ result.Poster }}" alt="{{ result.Title }}">
         {% else %}
         <img class="mw-100" src="{% static 'main_site/no-cover.jpg' %}" alt="{{ result.Title }}">
         {% endif %}
     </div>
-    <div class="col-8 d-flex flex-column align-items-start justify-content-center">
+    <div class="col-8 col-sm-9 col-lg-8 d-flex flex-column align-items-start justify-content-center">
         <h3>
             <a class="yellow-link search-result-title" href="https://www.imdb.com/title/{{ result.imdbID }}/" target="_blank">{{ result.Title }}</a>
             <span class="year"></span>

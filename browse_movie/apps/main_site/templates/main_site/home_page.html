@@ -10,12 +10,12 @@
         <a href="{% url 'account_logout' %}" class="yellow-link">Log out</a>
     </p>
     <div class="row header-title">
-        <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 text-uppercase text-center">
+        <div class="col-md-8 offset-md-2 col-lg-8 offset-lg-2 text-uppercase text-center">
             <h1>Your <span class="text-yellow">movies.</span></h1>
         </div>
     </div>
     <div class="row mt-5">
-        <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 ">
+        <div class="col-md-8 offset-md-2 col-lg-8 offset-lg-2">
             <input class="form-control search-input" type="search" placeholder="Start planning your evening..." />
             <div class="search-results mt-4">
                 {{ search_results }}
@@ -33,7 +33,7 @@
 </div>
 <div class="btn" id="watchlist-circle" data-toggle="modal" data-target="#watchlist-modal">
     <img class="mw-100" src="{% static 'main_site/bookmark_yellow.png' %}" alt="bookmark">
-    <h5 id="watchlist-count"><span class="badge badge-pill badge-danger">{{ user.watchlist_set.first.movies_id|length }}</span></h5>
+    <h5 id="watchlist-count"><span class="badge badge-pill badge-success">{{ user.watchlist_set.first.movies_id|length }}</span></h5>
 </div>
 
 <!-- modals -->
@@ -41,7 +41,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Your watchlist</h5>
+                <h5 class="modal-title text-dark" id="exampleModalCenterTitle">Your watchlist</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

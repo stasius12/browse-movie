@@ -8,6 +8,9 @@ body {
 #home-page h1 {
     font-size: 100px;
 }
+@media(max-width: 500px) {
+    #home-page h1 {font-size: 70px; }
+}
 .text-yellow {
     color: #effd2f;
 }
