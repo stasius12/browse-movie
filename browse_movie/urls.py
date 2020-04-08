@@ -4,6 +4,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include("browse_movie.apps.main_site.urls")),
+    path('', include(('browse_movie.apps.main_site.urls', 'main_site'), namespace='main_site')),
     path('accounts/', include('allauth.urls')),
 ]

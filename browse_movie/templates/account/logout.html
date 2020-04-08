@@ -12,6 +12,6 @@
     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
     {% endif %}
     <button class="btn btn-danger btn-block" type="submit">Sign Out</button>
-    <a class="btn btn-outline-primary btn-block mt-3" href="{% url 'home_page' %}">Back to BrowseMovie</a>
+    <a class="btn btn-outline-primary btn-block mt-3" href="{% url 'main_site:home_page' %}">Back to BrowseMovie</a>
 </form>
 {% endblock %}

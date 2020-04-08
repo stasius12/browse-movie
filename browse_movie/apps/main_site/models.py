@@ -10,12 +10,14 @@ class WatchList(models.Model):
     )
 
     def add_movie(self, movie_id):
+        movie_id = movie_id.strip()
         if not movie_id in self.movies_id:
             self.movies_id.append(movie_id)
             self.save()
             return len(self.movies_id)
 
     def remove_movie(self, movie_id):
+        movie_id = movie_id.strip()
         if movie_id in self.movies_id:
             self.movies_id.remove(movie_id)
             self.save()
